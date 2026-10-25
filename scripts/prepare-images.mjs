@@ -1,10 +1,10 @@
-// Generate optimized web assets from the supplied artwork without changing it.
+// Generate public assets from local-only artwork; exclude the source's contact footer.
 import sharp from 'sharp';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 
 const directory = fileURLToPath(new URL('../public/images/', import.meta.url));
-const poster = path.join(directory, 'aki-poster.png');
+const poster = fileURLToPath(new URL('../.source-artwork/aki-poster.png', import.meta.url));
 const { width, height } = await sharp(poster).metadata();
 const crop = async (name, x, y, w, h, outputWidth) => sharp(poster)
   .extract({ left: Math.round(width * x), top: Math.round(height * y), width: Math.round(width * w), height: Math.round(height * h) })
@@ -15,7 +15,8 @@ const crop = async (name, x, y, w, h, outputWidth) => sharp(poster)
 await crop('aki-hero.webp', .535, 0, .465, .565, 1100);
 await crop('aki-portrait.webp', .54, .02, .46, .53, 800);
 await crop('aki-standing.webp', .49, .505, .485, .37, 900);
-await sharp(poster).resize({ width: 1122 }).webp({ quality: 86 }).toFile(path.join(directory, 'aki-poster.webp'));
+await sharp(poster).extract({ left: 0, top: 0, width, height: Math.round(height * .87) })
+  .resize({ width: 1122 }).webp({ quality: 86 }).toFile(path.join(directory, 'aki-poster.webp'));
 await sharp(path.join(directory, 'landscape.png')).resize({ width: 1600 }).webp({ quality: 80 }).toFile(path.join(directory, 'landscape.webp'));
 const socialPortrait = await sharp(path.join(directory, 'aki-hero.webp'))
   .resize(650, 630, { fit: 'cover', position: 'attention' }).toBuffer();

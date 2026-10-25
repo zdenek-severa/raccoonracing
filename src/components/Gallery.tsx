@@ -13,7 +13,7 @@ import 'yet-another-react-lightbox/plugins/thumbnails.css';
 const photos = [
   { src: '/images/aki-portrait.webp', width: 800, height: 1152, title: 'Aki zblízka', tag: 'AKI · PORTRÉT', alt: 'Aki, pes plemene australský honácký pes, na portrétu z plakátu' },
   { src: '/images/aki-standing.webp', width: 900, height: 859, title: 'Tohle je Aki', tag: 'AKI · V POSTOJI', alt: 'Aki v postoji ve zlatém světle, výřez z jeho plakátu' },
-  { src: '/images/aki-poster.webp', width: 1122, height: 1402, title: 'Aki na jednom plakátu', tag: 'AKI · CELÝ PLAKÁT', alt: 'Akiho prezentační plakát s portréty, rodiči a výsledky' },
+  { src: '/images/aki-poster.webp', width: 1122, height: 1220, title: 'Aki na jednom plakátu', tag: 'AKI · PLAKÁT', alt: 'Akiho prezentační plakát s portréty, rodiči a výsledky' },
 ];
 const slides = photos.map(({ title, ...photo }) => ({ ...photo, description: title }));
 

@@ -1,8 +1,6 @@
 ---
-import { contacts } from '../data/content';
-
 const title = 'Aki a Adi — australský honácký pes | Raccoon Racing';
-const description = 'Osobní stránky psa Akiho a fenky Adi, dvou australských honáckých psů. Poznejte naši smečku, plemeno a život s honáky. Raccoon Racing — Zdeněk a Petra.';
+const description = 'Osobní stránky psa Akiho a fenky Adi, dvou australských honáckých psů. Poznejte jejich příběhy, fotografie, plemeno a společný svět na Raccoon Racing.';
 const canonical = Astro.site ? new URL('/', Astro.site).href : undefined;
 const indexable = import.meta.env.PROD && import.meta.env.INDEXING_ENABLED !== 'false' && !!canonical;
 const image = Astro.site ? new URL('/images/social-card.jpg', Astro.site).href : undefined;
@@ -10,23 +8,16 @@ const verification = import.meta.env.GOOGLE_SITE_VERIFICATION;
 const schema = canonical ? {
   '@context': 'https://schema.org',
   '@graph': [
-    ...contacts.map((contact, index) => ({
-      '@type': 'Person', '@id': `${canonical}#${index === 0 ? 'zdenek' : 'petra'}`,
-      name: contact.name, telephone: contact.tel, email: contact.email,
-      url: `${canonical}#kontakt`,
-    })),
     {
       '@type': 'WebSite', '@id': `${canonical}#website`,
       url: canonical, name: 'Raccoon Racing', inLanguage: 'cs-CZ',
       description,
-      publisher: [{ '@id': `${canonical}#zdenek` }, { '@id': `${canonical}#petra` }],
     },
     {
       '@type': 'WebPage', '@id': `${canonical}#webpage`,
       url: canonical, name: title, description, inLanguage: 'cs-CZ',
       isPartOf: { '@id': `${canonical}#website` },
       about: [{ '@id': `${canonical}#aki` }, { '@id': `${canonical}#adi` }],
-      author: [{ '@id': `${canonical}#zdenek` }, { '@id': `${canonical}#petra` }],
       primaryImageOfPage: { '@type': 'ImageObject', url: image, width: 1200, height: 630 },
     },
     {
