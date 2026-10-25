@@ -19,7 +19,8 @@
     "astro": "latest",
     "react": "latest",
     "react-dom": "latest",
-    "tailwindcss": "latest"
+    "tailwindcss": "latest",
+    "yet-another-react-lightbox": "^3.32.2"
   },
   "devDependencies": {
     "@astrojs/check": "latest",

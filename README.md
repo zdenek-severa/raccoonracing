@@ -33,6 +33,7 @@ npm run prepare:images # znovu vytvoří WebP výřezy ze zdrojových PNG
 - `src/data/content.ts`: kontakty, navigace a časté dotazy.
 - `src/styles/global.css`: barevnost, typografie, Tailwind a responzivní styly.
 - `src/components/`: React menu, profil psa s přístupnými záložkami, dialog galerie a FAQ.
+- Galerie používá `yet-another-react-lightbox`: zobrazení přes celou plochu, přepínání šipkami a gesty, náhledy, přiblížení a volitelný fullscreen. Ovládání je česky; původní malý dialog byl odstraněn.
 - `public/images/`: lokální obrázky. Portrétní a postojové výřezy jsou z dodaného plakátu, nikoli nové dokumentární fotografie.
 
 Fonty jsou servírované lokálně přes Fontsource. Web nepoužívá analytiku, externí fotografie, cookies ani nefunkční kontaktní formulář. Telefonní a e-mailové odkazy otevírají příslušnou aplikaci návštěvníka.
