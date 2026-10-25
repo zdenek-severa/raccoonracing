@@ -1,8 +1,0 @@
-/* Hide Netlify's private-project toolbar and public-project badge, including
-   frames injected after page load. Match their titles as well as their IDs. */
-iframe#nl-hud-frame,
-iframe#nl-badge-frame,
-iframe[title="Netlify"],
-iframe[title="Powered by Netlify"] {
-  display: none !important;
-}
