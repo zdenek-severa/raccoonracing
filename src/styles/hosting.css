@@ -1,0 +1,5 @@
+/* Netlify injects this host-owned toolbar after deployment. Keep the kennel
+   presentation free of hosting controls, including when the frame is added late. */
+iframe#nl-hud-frame {
+  display: none !important;
+}
