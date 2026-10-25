@@ -1,8 +1,8 @@
 ---
 import { contacts } from '../data/content';
 
-const title = 'Raccoon Racing | Chovná stanice australského honáckého psa';
-const description = 'Poznejte Raccoon Racing, chovnou stanici australského honáckého psa. Naši psi, povaha plemene, informace o štěňatech a kontakt na Zdeňka a Petru.';
+const title = 'Aki a Adi — australský honácký pes | Raccoon Racing';
+const description = 'Osobní stránky psa Akiho a fenky Adi, dvou australských honáckých psů. Poznejte naši smečku, plemeno a život s honáky. Raccoon Racing — Zdeněk a Petra.';
 const canonical = Astro.site ? new URL('/', Astro.site).href : undefined;
 const indexable = import.meta.env.PROD && import.meta.env.INDEXING_ENABLED !== 'false' && !!canonical;
 const image = Astro.site ? new URL('/images/social-card.jpg', Astro.site).href : undefined;
@@ -10,28 +10,35 @@ const verification = import.meta.env.GOOGLE_SITE_VERIFICATION;
 const schema = canonical ? {
   '@context': 'https://schema.org',
   '@graph': [
-    {
-      '@type': 'Organization', '@id': `${canonical}#organization`,
-      name: 'Raccoon Racing', url: canonical,
-      description, image,
-      logo: new URL('/favicon.svg', canonical).href,
-      contactPoint: contacts.map(contact => ({
-        '@type': 'ContactPoint', name: contact.name,
-        telephone: contact.tel, email: contact.email, availableLanguage: 'cs',
-        contactType: 'Informace o chovné stanici',
-      })),
-    },
+    ...contacts.map((contact, index) => ({
+      '@type': 'Person', '@id': `${canonical}#${index === 0 ? 'zdenek' : 'petra'}`,
+      name: contact.name, telephone: contact.tel, email: contact.email,
+      url: `${canonical}#kontakt`,
+    })),
     {
       '@type': 'WebSite', '@id': `${canonical}#website`,
       url: canonical, name: 'Raccoon Racing', inLanguage: 'cs-CZ',
-      publisher: { '@id': `${canonical}#organization` },
+      description,
+      publisher: [{ '@id': `${canonical}#zdenek` }, { '@id': `${canonical}#petra` }],
     },
     {
       '@type': 'WebPage', '@id': `${canonical}#webpage`,
       url: canonical, name: title, description, inLanguage: 'cs-CZ',
       isPartOf: { '@id': `${canonical}#website` },
-      about: { '@id': `${canonical}#organization` },
+      about: [{ '@id': `${canonical}#aki` }, { '@id': `${canonical}#adi` }],
+      author: [{ '@id': `${canonical}#zdenek` }, { '@id': `${canonical}#petra` }],
       primaryImageOfPage: { '@type': 'ImageObject', url: image, width: 1200, height: 630 },
+    },
+    {
+      '@type': 'Thing', '@id': `${canonical}#aki`, name: 'Aki',
+      alternateName: 'Akarni Flameborn Linden Algona',
+      description: 'Aki, pes plemene australský honácký pes.',
+      url: `${canonical}#aki`, image: new URL('/images/aki-portrait.webp', canonical).href,
+    },
+    {
+      '@type': 'Thing', '@id': `${canonical}#adi`, name: 'Adi',
+      description: 'Adi, fenka plemene australský honácký pes.',
+      url: `${canonical}#adi`,
     },
   ],
 } : undefined;
@@ -51,12 +58,12 @@ const schema = canonical ? {
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta property="og:image:type" content="image/jpeg" />
-  <meta property="og:image:alt" content="Aki — australský honácký pes stanice Raccoon Racing" />
+  <meta property="og:image:alt" content="Aki na osobních stránkách Akiho a Adi — Raccoon Racing" />
 </>}
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content={title} />
 <meta name="twitter:description" content={description} />
 {image && <meta name="twitter:image" content={image} />}
-<meta name="twitter:image:alt" content="Aki — australský honácký pes stanice Raccoon Racing" />
+<meta name="twitter:image:alt" content="Aki na osobních stránkách Akiho a Adi — Raccoon Racing" />
 {verification && <meta name="google-site-verification" content={verification} />}
 {schema && <script type="application/ld+json" set:html={JSON.stringify(schema).replace(/</g, '\u003c')} />}

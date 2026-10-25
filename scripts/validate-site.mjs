@@ -45,7 +45,8 @@ const meta = (name) => {
 assert.match(html, /<html lang="cs">/);
 assert.equal((html.match(/<h1\b/g) || []).length, 1, 'Exactly one H1');
 assert.equal((html.match(/<title>/g) || []).length, 1, 'Exactly one title');
-assert.ok(html.match(/<title>([^<]+)<\/title>/)?.[1].includes('australského honáckého psa'));
+const pageTitle = html.match(/<title>([^<]+)<\/title>/)?.[1] || '';
+assert.ok(pageTitle.includes('Aki a Adi') && pageTitle.includes('australský honácký pes'));
 assert.ok(meta('description').length >= 100 && meta('description').length <= 170);
 const canonicalLinks = tags('link').filter(tag => attr(tag, 'rel') === 'canonical');
 assert.equal(canonicalLinks.length, 1);
@@ -70,14 +71,20 @@ assert.ok(!xml.includes('#'), 'Sitemap must not contain fragment sections');
 
 const graph = JSON.parse(html.match(/<script type="application\/ld\+json">([^]*?)<\/script>/)?.[1] || 'null');
 assert.equal(graph['@context'], 'https://schema.org');
-assert.deepEqual(graph['@graph'].map(node => node['@type']), ['Organization', 'WebSite', 'WebPage']);
-assert.equal(graph['@graph'][0].contactPoint.length, 2);
-assert.equal(graph['@graph'][0].contactPoint[0].email, 'zdenek.severa@gmail.com');
-assert.equal(graph['@graph'][0].contactPoint[1].email, 'kmetkova.peta@gmail.com');
-assert.equal(graph['@graph'][2].url, canonical);
+const nodes = graph['@graph'];
+assert.deepEqual(nodes.map(node => node['@type']), ['Person', 'Person', 'WebSite', 'WebPage', 'Thing', 'Thing']);
+const people = nodes.filter(node => node['@type'] === 'Person');
+assert.equal(people[0].email, 'zdenek.severa@gmail.com');
+assert.equal(people[1].email, 'kmetkova.peta@gmail.com');
+const webpage = nodes.find(node => node['@type'] === 'WebPage');
+assert.equal(webpage.url, canonical);
+assert.deepEqual(webpage.about.map(node => node['@id']), [`${canonical}#aki`, `${canonical}#adi`]);
+assert.deepEqual(nodes.filter(node => node['@type'] === 'Thing').map(node => node.name), ['Aki', 'Adi']);
 assert.ok(!html.includes('\\u00a0'), 'Non-breaking spaces must render as actual characters');
 assert.ok(html.includes('BAER OK') && html.includes('NHAT'), 'All profile tabs must exist in server-rendered HTML');
-assert.ok(html.includes('jak žijete') && html.includes('Osobní seznámení'), 'FAQ answers must exist before JavaScript runs');
+assert.ok(html.includes('Aki je pes a Adi fenka.') && html.includes('Současná galerie patří Akimu.'), 'FAQ answers must exist before JavaScript runs');
+assert.ok(html.includes('id="aki"') && html.includes('id="adi"'), 'Both dogs need their own server-rendered profile');
+assert.doesNotMatch(html, /chovn[áéou]+\s+stanic|informace o vrzích|id="stenata"/iu, 'Personal dog pages must not retain kennel or litter sales copy');
 assert.ok(!html.includes('\uFFFD'), 'No replacement characters in UTF-8 text');
 
 const ids = new Set([...html.matchAll(/\bid="([^"]+)"/g)].map(match => match[1]));

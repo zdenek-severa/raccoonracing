@@ -1,9 +1,9 @@
 import { useState } from 'react';
 
 const tabs = [
-  { title: 'Představení', content: <><p>Uhrančivý pohled, červeně tečkovaná srst a pozornost, které nic neunikne. Seznamte se s Akim, australským honáckým psem jménem Akarni Flameborn Linden Algona.</p><dl className="profile-facts"><div><dt>Narozen</dt><dd>19. 11. 2025</dd></div><div><dt>Otec</dt><dd>Tablerock Heezfrom Downunder</dd></div><div><dt>Matka</dt><dd>Haruka Red Heeler Ara</dd></div></dl></> },
-  { title: 'Zdraví', content: <><p>Zdravotní údaje podle dodaného prezentačního plakátu. Podrobnosti a příslušné výsledky s vámi rádi projdeme osobně.</p><dl className="profile-facts health-facts"><div><dt>PRA</dt><dd>N/P</dd></div><div><dt>PRA rcd4 · PLL</dt><dd>N/N · N/N</dd></div><div><dt>NCL5 · NCL12 · DM</dt><dd>N/N · N/N · N/N</dd></div><div><dt>MC · Cyst.</dt><dd>N/N · N/N</dd></div><div><dt>Sluch</dt><dd>BAER OK</dd></div></dl></> },
-  { title: 'Výstavy a zkoušky', content: <><p>Práce, společné zážitky i zkušenosti z výstavního kruhu. Údaje vycházejí z Akiho prezentačního plakátu.</p><dl className="profile-facts"><div><dt>Výstavy</dt><dd>3× BOMP, BOP</dd></div><div><dt>World Dog Show Bologna</dt><dd>Very promising</dd></div><div><dt>Zkoušky</dt><dd>NHAT</dd></div></dl></> },
+  { title: 'O Akim', content: <><p>Aki je náš australský honácký pes s červeně tečkovanou srstí. Celým jménem Akarni Flameborn Linden Algona, pro nás prostě Aki. Spolu s Adi je hlavní postavou těchto stránek.</p><dl className="profile-facts"><div><dt>Narozen</dt><dd>19. 11. 2025</dd></div><div><dt>Otec</dt><dd>Tablerock Heezfrom Downunder</dd></div><div><dt>Matka</dt><dd>Haruka Red Heeler Ara</dd></div></dl></> },
+  { title: 'Zdraví', content: <><p>K Akiho příběhu patří i jeho zdravotní výsledky. Zde je přehled údajů uvedených na jeho prezentačním plakátu.</p><dl className="profile-facts health-facts"><div><dt>PRA</dt><dd>N/P</dd></div><div><dt>PRA rcd4 · PLL</dt><dd>N/N · N/N</dd></div><div><dt>NCL5 · NCL12 · DM</dt><dd>N/N · N/N · N/N</dd></div><div><dt>MC · Cyst.</dt><dd>N/N · N/N</dd></div><div><dt>Sluch</dt><dd>BAER OK</dd></div></dl></> },
+  { title: 'Výstavy a zkoušky', content: <><p>Další střípky z Akiho světa: výstavní hodnocení a zkouška NHAT. Přehled přebírá údaje z jeho prezentačního plakátu.</p><dl className="profile-facts"><div><dt>Výstavy</dt><dd>3× BOMP, BOP</dd></div><div><dt>World Dog Show Bologna</dt><dd>Very promising</dd></div><div><dt>Zkoušky</dt><dd>NHAT</dd></div></dl></> },
 ];
 
 export default function DogProfile() {

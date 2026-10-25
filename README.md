@@ -1,6 +1,6 @@
 # Raccoon Racing
 
-Český prezentační web chovné stanice australského honáckého psa. Astro, Tailwind CSS 4 a interaktivní React islands; TypeScript v přísném režimu. Stránka se sestavuje do statického HTML.
+Osobní české stránky psa Akiho a fenky Adi, dvou australských honáckých psů. Za webem Raccoon Racing stojí Zdeněk Severa a Petra Kmetková. Astro, Tailwind CSS 4 a interaktivní React islands; TypeScript v přísném režimu. Stránka se sestavuje do statického HTML.
 
 ## Spuštění
 
@@ -38,7 +38,7 @@ npm run prepare:images # znovu vytvoří WebP výřezy ze zdrojových PNG
 
 Fonty jsou servírované lokálně přes Fontsource. Web nepoužívá analytiku, externí fotografie, cookies ani nefunkční kontaktní formulář. Telefonní a e-mailové odkazy otevírají příslušnou aplikaci návštěvníka.
 
-Údaje o Akim jsou přepsané z dodaného plakátu. Texty o přístupu stanice jsou návrhem k redakčnímu schválení. Před veřejným nasazením ověřte zejména datum narození, výstavní a zdravotní výsledky a oficiální název stanice. Dostupnost štěňat ani termíny vrhů nejsou vymyšlené; návštěvník je odkázán na osobní kontakt. Další psy a skutečné fotografie lze doplnit do stejné struktury.
+Web má osobní zaměření: představení Akiho a Adi, náš společný svět, plemeno, fotografie a kontakt na lidi za webem. Údaje o Akim jsou přepsané z dodaného plakátu. O Adi jsou uvedené pouze potvrzené informace: jméno, pohlaví a plemeno. Její datum narození, původ ani výsledky se nevymýšlejí. Galerie a úvodní fotografie zobrazují Akiho a jsou tak označené; Adi má vlastní typografickou vizitku. Její fotografii lze doplnit, až bude k dispozici. Texty o společném životě jsou redakční návrh bez smyšlených konkrétních událostí či úspěchů.
 
 ## SEO a indexace
 
@@ -48,7 +48,7 @@ Produkční doména je `https://raccoonracing.cz/`. Je jednotně použita v cano
 - Pro neveřejnou testovací kopii nastavte `INDEXING_ENABLED=false` a znovu spusťte build. Sitemap pak neobsahuje URL a robots na ni neodkazuje. Robots umožňuje načtení stránky, aby vyhledávač mohl přečíst `noindex`.
 - `src/pages/robots.txt.ts` a `src/pages/sitemap.xml.ts` generují skutečné statické soubory `dist/robots.txt` a `dist/sitemap.xml` při každém sestavení.
 - Sitemap obsahuje hlavní stránku. Sekce s `#fragmentem`, obrázky ani chybová stránka nejsou samostatné indexované stránky. Není přidáváno smyšlené datum změny při každém buildu.
-- `src/components/Seo.astro` obsahuje title, description, canonical, Open Graph, Twitter Cards a JSON-LD typů Organization, WebSite a WebPage. Neuvádí vymyšlenou adresu, hodnocení ani dostupnost štěňat.
+- `src/components/Seo.astro` obsahuje title, description, canonical, Open Graph, Twitter Cards a JSON-LD pro osobní web: Person (Zdeněk a Petra), WebSite, WebPage a Thing (Aki a Adi jako témata stránky). Neuvádí vymyšlenou adresu, hodnocení ani komerční nabídku.
 - Náhled pro sdílení je `public/images/social-card.jpg` (1200 × 630).
 - Všechny profilové záložky i odpovědi FAQ jsou už v serverem sestaveném HTML, takže jejich načtení nezávisí na spuštění Reactu.
 - `404.html` má vlastní `noindex` a nenastavuje canonical na hlavní stránku.
