@@ -1,5 +1,8 @@
-/* Netlify injects this host-owned toolbar after deployment. Keep the kennel
-   presentation free of hosting controls, including when the frame is added late. */
-iframe#nl-hud-frame {
+/* Hide Netlify's private-project toolbar and public-project badge, including
+   frames injected after page load. Match their titles as well as their IDs. */
+iframe#nl-hud-frame,
+iframe#nl-badge-frame,
+iframe[title="Netlify"],
+iframe[title="Powered by Netlify"] {
   display: none !important;
 }
