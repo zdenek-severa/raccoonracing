@@ -1,0 +1,26 @@
+{
+  "extends": ["html-validate:recommended", "html-validate:document"],
+  "elements": ["html5", {
+    "astro-island": {
+      "flow": true,
+      "phrasing": true,
+      "transparent": true
+    },
+    "astro-slot": {
+      "flow": true,
+      "phrasing": true,
+      "transparent": true
+    },
+    "astro-static-slot": {
+      "flow": true,
+      "phrasing": true,
+      "transparent": true
+    }
+  }],
+  "rules": {
+    "require-sri": ["error", { "target": "crossorigin" }],
+    "void-style": "off",
+    "attribute-empty-style": "off",
+    "attribute-boolean-style": "off"
+  }
+}

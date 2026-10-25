@@ -1,0 +1,34 @@
+{
+  "name": "raccoonracing",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev --host 127.0.0.1",
+    "build": "astro check && astro build && npm run validate",
+    "preview": "astro preview --host 127.0.0.1",
+    "check": "astro check",
+    "prepare:images": "node scripts/prepare-images.mjs",
+    "validate": "node scripts/validate-site.mjs"
+  },
+  "dependencies": {
+    "@astrojs/react": "latest",
+    "@fontsource/cormorant-garamond": "latest",
+    "@fontsource/manrope": "latest",
+    "@tailwindcss/vite": "latest",
+    "astro": "latest",
+    "react": "latest",
+    "react-dom": "latest",
+    "tailwindcss": "latest"
+  },
+  "devDependencies": {
+    "@astrojs/check": "latest",
+    "@types/react": "latest",
+    "@types/react-dom": "latest",
+    "fast-xml-parser": "^5.11.2",
+    "fast-xml-validator": "^1.4.2",
+    "html-validate": "^11.17.0",
+    "sharp": "latest",
+    "typescript": "latest"
+  }
+}
